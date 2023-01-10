@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const SignIn = () => {
   const [fromData, setFromData] = useState({
@@ -9,12 +10,34 @@ const SignIn = () => {
     password: "",
   });
 
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
 
   const { email, password } = fromData;
 
   const handleChange = (e) => {
-    setFromData({ ...FormData, [e.target.id]: e.target.value });
+    setFromData({ ...fromData, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const auth = getAuth();
+
+      const userCredentials = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      if (userCredentials.user) {
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -23,7 +46,7 @@ const SignIn = () => {
         <p className="pageHeader"> Welcome Back!</p>
       </header>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="email"
           className="emailInput"
@@ -36,6 +59,7 @@ const SignIn = () => {
           <input
             className="passwordInput"
             placeholder="Password"
+            id="password"
             type={showPassword ? "text" : "password"}
             value={password}
             onChange={handleChange}
