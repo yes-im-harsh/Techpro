@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as ArrowRight } from "../assets/svg/keyboardArrowRightIcon.svg";
-import { async } from "@firebase/util";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
 const ForgotPassword = () => {

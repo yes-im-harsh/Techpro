@@ -56,48 +56,44 @@ const Profile = () => {
           <button type="button" className="logOut" onClick={onLogout}>
             Logout
           </button>
-
-          <main>
-            <div className="profileDetailsHeader">
-              <p className="personalDetailsText">Personal Details</p>
-              <p
-                className="changePersonalDetails"
-                onClick={() => {
-                  setChangeDetails((prevState) => !prevState);
-
-                  onSubmit();
-                }}
-              >
-                {changeDetails ? "done" : "change"}
-              </p>
-            </div>
-
-            <div className="profileCard">
-              <form>
-                <input
-                  type="text"
-                  id="name"
-                  className={
-                    !changeDetails ? "profileName" : "profileNameActive"
-                  }
-                  disabled={!changeDetails}
-                  value={name}
-                  onChange={handleChange}
-                />
-                <input
-                  type="email"
-                  id="email"
-                  className={
-                    !changeDetails ? "profileEmail" : "profileEmailActive"
-                  }
-                  value={email}
-                  disabled={true}
-                  onChange={handleChange}
-                />
-              </form>
-            </div>
-          </main>
         </header>
+        <main>
+          <div className="profileDetailsHeader">
+            <p className="profileDetailsText">Personal Details</p>
+            <p
+              className="changePersonalDetails"
+              onClick={() => {
+                setChangeDetails((prevState) => !prevState);
+                onSubmit();
+              }}
+            >
+              {changeDetails ? "done" : "change"}
+            </p>
+          </div>
+
+          <div className="profileCard">
+            <form>
+              <input
+                type="text"
+                id="name"
+                className={!changeDetails ? "profileName" : "profileNameActive"}
+                disabled={!changeDetails}
+                value={name}
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                id="email"
+                className={
+                  !changeDetails ? "profileEmail" : "profileEmailActive"
+                }
+                disabled={!changeDetails}
+                value={email}
+                onChange={handleChange}
+              />
+            </form>
+          </div>
+        </main>
       </div>
     </>
   );

@@ -8,6 +8,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import Navbar from "./components/Navbar";
 import Profile from "./pages/Profile";
 import PrivateRoute from "./components/PrivateRoute";
+import RefComp from "./components/RefComp";
 
 function App() {
   return (
@@ -22,8 +23,10 @@ function App() {
           </Route>
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/ref" element={<RefComp />} />
         </Routes>
         <Navbar />
+        
       </Router>
     </>
   );
