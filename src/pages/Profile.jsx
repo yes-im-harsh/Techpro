@@ -1,6 +1,6 @@
 import { getAuth, updateProfile } from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../firebase.config";
 
@@ -39,7 +39,8 @@ const Profile = () => {
       });
 
       //Update in Firestore
-      updateDoc(doc(db, "users", auth.currentUser.uid), {
+      const userRef = doc(db, "users", auth.currentUser.uid);
+      updateDoc(userRef, {
         name,
       });
     } catch (error) {
@@ -90,7 +91,7 @@ const Profile = () => {
                     !changeDetails ? "profileEmail" : "profileEmailActive"
                   }
                   value={email}
-                  disabled={!changeDetails}
+                  disabled={true}
                   onChange={handleChange}
                 />
               </form>
