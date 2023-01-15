@@ -3,6 +3,12 @@
   box-sizing: border-box;
 }
 
+.spinnerNew {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 html::-webkit-scrollbar {
   display: none;
 }

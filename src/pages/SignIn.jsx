@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import OAuth from "../components/OAuth";
 
 const SignIn = () => {
   const [fromData, setFromData] = useState({
@@ -11,6 +12,8 @@ const SignIn = () => {
   });
 
   const navigate = useNavigate();
+  const params = useParams();
+  console.log(params);
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -84,7 +87,8 @@ const SignIn = () => {
         </div>
       </form>
 
-      {/* Todo: GoogleOAuth */}
+      <OAuth />
+
       <Link to="/sign-up" className="registerLink">
         Sign Up Instead
       </Link>

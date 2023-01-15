@@ -9,6 +9,7 @@ import {
 import { db } from "../firebase.config.js";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import OAuth from "../components/OAuth";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -113,7 +114,7 @@ const SignUp = () => {
         </div>
       </form>
 
-      {/* Todo: GoogleOAuth */}
+      <OAuth />
       <Link to="/sign-in" className="registerLink">
         Sign In Instead
       </Link>
